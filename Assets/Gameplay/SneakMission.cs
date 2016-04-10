@@ -15,6 +15,8 @@ public class SneakMission : MonoBehaviour {
 	public bool gameOver = false;
 	public bool level1Complete = false;
 	public bool isWaiting = false;
+	public bool leftOnce = false;
+	public bool helicopterTakeOff = false;
 
 	private enum Positions {r1c1, r1c2, r1c3, r1c4, r1c5, r2c1, r2c2, r2c3, r2c4, r2c5, r3c1, r3c2, r3c3, r3c4, r3c5, r4c1, r4c2, r4c3, r4c4, r4c5, r5c1, r5c2, r5c3, r5c4, r5c5};
 
@@ -201,8 +203,14 @@ public class SneakMission : MonoBehaviour {
 	}
 
 	void Position_r2c1() {
-		descriptionText.text = "";
-		choicesText.text = "";
+		descriptionText.text = "From the other side of the opening under the walkway, you can see some crates to your right. There is also space under the stairs you can hide at.";
+		choicesText.text = "Press S to SNEAK under the stairs. \nPress B to go BACK to the otherside of the opening.";
+
+		if (Input.GetKeyDown("s")) {
+			currentPosition = Positions.r1c1;
+		} else if (Input.GetKeyDown("b")) {
+			currentPosition = Positions.r2c1;
+		}
 	}
 
 	void Position_r2c2() {
@@ -221,18 +229,32 @@ public class SneakMission : MonoBehaviour {
 	}
 
 	void Position_r2c5() {
-		descriptionText.text = "You sneak down the wall but don't see a way into the facility. Under a bush near the wall however, you do see a spot that has been recently dug up. " + 
-			"You clear away the loose soil and find a package with a silenced pistol and some rounds. 'Looks like the mole came through.' you think to yourself.";
-		choicesText.text = "Press B to go BACK towards the tree.";
-		weaponEquipped = "Silenced Pistol";
+
+		if (weaponEquipped == "Silenced Pistol" && leftOnce) {
+			descriptionText.text = "You search the area, but don't find any additional equipment.";
+			choicesText.text = "Press B to go BACK towards the tree.";
+		} else {
+			descriptionText.text = "You sneak down the wall but don't see a way into the facility. Under a bush near the wall however, you do see a spot that has been recently dug up. " + 
+				"You clear away the loose soil and find a package with a silenced pistol and some rounds. 'Looks like the mole came through.' you think to yourself.";
+			choicesText.text = "Press B to go BACK towards the tree.";
+			weaponEquipped = "Silenced Pistol";
+		}
+			
 		if (Input.GetKeyDown("b")) {
 			currentPosition = Positions.r3c5;
+			leftOnce = true;
 		}
 	}
 
 	void Position_r3c1() {
-		descriptionText.text = "";
-		choicesText.text = "";
+		descriptionText.text = "Hiding behind some crates, you can see the guard on the platform and the western staircase. You can see a walkway,  connecting the platform and the staircase, that has an opening underneath it.";
+		choicesText.text = "Press D to DIVE to the opening under the platorm.  \nPress B to go BACK to the south side of the Helipad.";
+
+		if (Input.GetKeyDown("d")) {
+			currentPosition = Positions.r2c1;
+		} else if (Input.GetKeyDown("b")) {
+			currentPosition = Positions.r4c2;
+		}
 	}
 
 	void Position_r3c2() {
@@ -241,10 +263,21 @@ public class SneakMission : MonoBehaviour {
 	}
 
 	void Position_r3c3() {
-		descriptionText.text = "You sneak up to the side of the Helipad as the chopper is lifting off. You think to yourself \"A Hind D? What's a Russian gunship doing here?\"";
+
+
+		if (helicopterTakeOff) {
+			descriptionText.text = "The Helipad is empty.";
+		} else {
+			descriptionText.text = "You sneak up to the side of the Helipad as the chopper is lifting off. You think to yourself \"A Hind D? What's a Russian gunship doing here?\"";
+		}
+			
 		choicesText.text = "Press S to SNEAK to the southern side of the helipad. \nPress B to go BACK to the tree.";
 		if (Input.GetKeyDown("b")) {
 			currentPosition = Positions.r3c4;
+			helicopterTakeOff = true;
+		} else if (Input.GetKeyDown("s")) {
+			currentPosition = Positions.r2c3;
+			helicopterTakeOff = true;
 		}
 	}
 
@@ -310,8 +343,14 @@ public class SneakMission : MonoBehaviour {
 	}
 
 	void Position_r4c2() {
-		descriptionText.text = "";
-		choicesText.text = "";
+		descriptionText.text = "You sneak around to the southern side of the Helipad. You peer around the corner. The cost is clear.";
+		choicesText.text = "Press D to DIVE to the boxes across the walkway. \nPress B to go Back to the east side of the Helipad.";
+
+		if (Input.GetKeyDown("d")) {
+			currentPosition = Positions.r3c4;
+		} else if (Input.GetKeyDown("b")) {
+			currentPosition = Positions.r2c3;
+		}
 	}
 
 	void Position_r4c3() {
