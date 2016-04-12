@@ -18,7 +18,7 @@ public class SneakMission : MonoBehaviour {
 	public bool leftOnce = false;
 	public bool helicopterTakeOff = false;
 
-	private enum Positions {r1c1, r1c2, r1c3, r1c4, r1c5, r2c1, r2c2, r2c3, r2c4, r2c5, r3c1, r3c2, r3c3, r3c4, r3c5, r4c1, r4c2, r4c3, r4c4, r4c5, r5c1, r5c2, r5c3, r5c4, r5c5};
+	private enum Positions {r1c1, r1c2, r1c3, r1c4, r1c5, r2c1, r2c1a, r2c1b, r2c2, r2c3, r2c4, r2c5, r3c1, r3c2, r3c3, r3c4, r3c5, r4c1, r4c2, r4c3, r4c4, r4c5, r5c1, r5c2, r5c3, r5c4, r5c5};
 
 	private Positions currentPosition;
 	private string weaponEquipped = "Unarmed";
@@ -69,6 +69,12 @@ public class SneakMission : MonoBehaviour {
 				break;
 			case Positions.r2c1:
 				Position_r2c1 ();
+				break;
+			case Positions.r2c1a:
+				Position_r2c1a ();
+				break;
+			case Positions.r2c1b:
+				Position_r2c1b ();
 				break;
 			case Positions.r2c2:
 				Position_r2c2 ();
@@ -143,7 +149,11 @@ public class SneakMission : MonoBehaviour {
 		case Positions.r1c4:
 			descriptionText.text = "You sneak up to the guard by the door and dispatch him easily, however as you grab the keycard from the downed guard, the patrolling guard spots you from the far stairs. You are immediately gunned down.";
 			break;
+		case Positions.r1c2:
+			descriptionText.text = "You do your best to pull the vent cover off quietly but your best is not good enough. The guard on the platform is quickly alerted to your precense and you are hunted down.";
+			break;
 		}
+
 
 		choicesText.text = "Press Spacebar to Continue.";
 		if (Input.GetKeyDown("space")) {
@@ -161,13 +171,24 @@ public class SneakMission : MonoBehaviour {
 	}
 
 	void Position_r1c1() {
-		descriptionText.text = "";
-		choicesText.text = "";
+		descriptionText.text = "Hiding under the stairs, you can see behind the crates. You can see the vent you saw from the tree earlier.";
+		choicesText.text = "Press S to SNEAK over to the vent. \nPress B to go Back into the opening under the walkway.";
+		if (Input.GetKeyDown("s")) {
+			currentPosition = Positions.r1c2;
+		} else if (Input.GetKeyDown("b")) {
+			currentPosition = Positions.r2c1b;
+		}
 	}
 
 	void Position_r1c2() {
-		descriptionText.text = "";
-		choicesText.text = "";
+		descriptionText.text = "The vent cover looks like it would be possible to remove without the use of a tool.";
+		choicesText.text = "Press P to PULL the vent cover off. \nPress B to go BACK to the stairs.";
+		if (Input.GetKeyDown("p")) {
+			gameOver = true;
+		} else if (Input.GetKeyDown("b")) {
+			currentPosition = Positions.r1c1;
+		}
+
 	}
 		
 	void Position_r1c3() {
@@ -203,13 +224,36 @@ public class SneakMission : MonoBehaviour {
 	}
 
 	void Position_r2c1() {
+		descriptionText.text = "";
+		choicesText.text = "";
+
+
+	}
+
+	void Position_r2c1a() {
+		descriptionText.text = "Hidden in the entrace to the space under the platform, have a few options for where to go next. You can crawl through the space to the other side, you can go West, which will take you to the western staircase " + 
+							   "or you can go East, which will take you between the North side of the Helipad and the guard on the platform.";
+		choicesText.text = "Press C to CRAWL through to the other side of the space under the platform. \nPress W to go WEST. \nPress E to go EAST. \nPress B to go Back to the crates you came from.";
+
+		if (Input.GetKeyDown("c")) {
+			currentPosition = Positions.r2c1b;
+		} else if (Input.GetKeyDown("w")) {
+			currentPosition = Positions.r2c1;
+		} else if (Input.GetKeyDown("e")) {
+			currentPosition = Positions.r3c1;
+		} else if (Input.GetKeyDown("b")) {
+			currentPosition = Positions.r3c1;
+		}
+	}
+
+	void Position_r2c1b() {
 		descriptionText.text = "From the other side of the opening under the walkway, you can see some crates to your right. There is also space under the stairs you can hide at.";
 		choicesText.text = "Press S to SNEAK under the stairs. \nPress B to go BACK to the otherside of the opening.";
 
 		if (Input.GetKeyDown("s")) {
 			currentPosition = Positions.r1c1;
 		} else if (Input.GetKeyDown("b")) {
-			currentPosition = Positions.r2c1;
+			currentPosition = Positions.r2c1a;
 		}
 	}
 
@@ -251,7 +295,7 @@ public class SneakMission : MonoBehaviour {
 		choicesText.text = "Press D to DIVE to the opening under the platorm.  \nPress B to go BACK to the south side of the Helipad.";
 
 		if (Input.GetKeyDown("d")) {
-			currentPosition = Positions.r2c1;
+			currentPosition = Positions.r2c1a;
 		} else if (Input.GetKeyDown("b")) {
 			currentPosition = Positions.r4c2;
 		}
