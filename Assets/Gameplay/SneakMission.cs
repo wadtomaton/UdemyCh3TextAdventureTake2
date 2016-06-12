@@ -9,7 +9,8 @@ public class SneakMission : MonoBehaviour {
 	private Text descriptionText;
 	private Text choicesText;
 	private Text weaponText;
-
+	private Image equipmentImage;
+	 
 	private LevelManager levelManager;
 
 	private bool gameOver = false;
@@ -17,13 +18,14 @@ public class SneakMission : MonoBehaviour {
 	private bool isWaiting = false;
 	private bool leftOnce = false;
 	private bool helicopterTakeOff = false;
-	private bool gotCrowbar = false;
+	private bool gotScrewdriver = false;
 	private bool leftBay = false;
 
 	private string entranceUsed = "";
 	private string gameOverChoice = "";
 
-	private enum Positions {r1c1, r1c2, r1c3, r1c4, r1c5, r2c1, r2c1a, r2c1b, r2c2, r2c3, r2c4, r2c5, r3c1, r3c2, r3c3, r3c4, r3c5, r4c1, r4c2, r4c3, r4c4, r4c4a, r4c4b, r4c4c, r4c5, r5c1, r5c2, r5c3, r5c4, r5c5};
+	private enum Positions {p1r1c1, p1r1c2, p1r1c3, p1r1c4, p1r1c5, p1r2c1, p1r2c1a, p1r2c1b, p1r2c2, p1r2c3, p1r2c4, p1r2c5, p1r3c1, p1r3c2, p1r3c3, p1r3c4, p1r3c5, p1r4c1, p1r4c2, p1r4c3, p1r4c4, p1r4c4a, 
+							p1r4c4b, p1r4c4c, p1r4c5, p1r5c1, p1r5c2, p1r5c3, p1r5c4, p1r5c5};
 
 	private Positions currentPosition;
 	private string weaponEquipped = "Unarmed";
@@ -45,7 +47,12 @@ public class SneakMission : MonoBehaviour {
 		weaponText = go.GetComponent<Text>();
 		weaponText.text = weaponEquipped;
 
-		currentPosition = Positions.r5c4;
+		go = GameObject.Find("EquipmentImage");
+		equipmentImage = go.GetComponent<Image> ();
+
+
+
+		currentPosition = Positions.p1r5c4;
 	}
 	
 	// Update is called once per frame
@@ -57,94 +64,94 @@ public class SneakMission : MonoBehaviour {
 			Level1Complete ();
 		} else {
 			switch (currentPosition) {
-			case Positions.r1c1:
+			case Positions.p1r1c1:
 				Position_r1c1 ();
 				break;
-			case Positions.r1c2:
+			case Positions.p1r1c2:
 				Position_r1c2 ();
 				break;
-			case Positions.r1c3:
+			case Positions.p1r1c3:
 				Position_r1c3 ();
 				break;
-			case Positions.r1c4:
+			case Positions.p1r1c4:
 				Position_r1c4 ();
 				break;
-			case Positions.r1c5:
+			case Positions.p1r1c5:
 				Position_r1c5 ();
 				break;
-			case Positions.r2c1:
+			case Positions.p1r2c1:
 				Position_r2c1 ();
 				break;
-			case Positions.r2c1a:
+			case Positions.p1r2c1a:
 				Position_r2c1a ();
 				break;
-			case Positions.r2c1b:
+			case Positions.p1r2c1b:
 				Position_r2c1b ();
 				break;
-			case Positions.r2c2:
+			case Positions.p1r2c2:
 				Position_r2c2 ();
 				break;
-			case Positions.r2c3:
+			case Positions.p1r2c3:
 				Position_r2c3 ();
 				break;
-			case Positions.r2c4:
+			case Positions.p1r2c4:
 				Position_r2c4 ();
 				break;
-			case Positions.r2c5:
+			case Positions.p1r2c5:
 				Position_r2c5 ();
 				break;
-			case Positions.r3c1:
+			case Positions.p1r3c1:
 				Position_r3c1 ();
 				break;
-			case Positions.r3c2:
+			case Positions.p1r3c2:
 				Position_r3c2 ();
 				break;
-			case Positions.r3c3:
+			case Positions.p1r3c3:
 				Position_r3c3 ();
 				break;
-			case Positions.r3c4:
+			case Positions.p1r3c4:
 				Position_r3c4 ();
 				break;
-			case Positions.r3c5:
+			case Positions.p1r3c5:
 				Position_r3c5 ();
 				break;
-			case Positions.r4c1:
+			case Positions.p1r4c1:
 				Position_r4c1 ();
 				break;
-			case Positions.r4c2:
+			case Positions.p1r4c2:
 				Position_r4c2 ();
 				break;
-			case Positions.r4c3:
+			case Positions.p1r4c3:
 				Position_r4c3 ();
 				break;
-			case Positions.r4c4:
+			case Positions.p1r4c4:
 				Position_r4c4 ();
 				break;
-			case Positions.r4c4a:
+			case Positions.p1r4c4a:
 				Position_r4c4a ();
 				break;
-			case Positions.r4c4b:
+			case Positions.p1r4c4b:
 				Position_r4c4b ();
 				break;
-			case Positions.r4c4c:
+			case Positions.p1r4c4c:
 				Position_r4c4c ();
 				break;
-			case Positions.r4c5:
+			case Positions.p1r4c5:
 				Position_r4c5 ();
 				break;
-			case Positions.r5c1:
+			case Positions.p1r5c1:
 				Position_r5c1 ();
 				break;
-			case Positions.r5c2:
+			case Positions.p1r5c2:
 				Position_r5c2 ();
 				break;
-			case Positions.r5c3:
+			case Positions.p1r5c3:
 				Position_r5c3 ();
 				break;
-			case Positions.r5c4:
+			case Positions.p1r5c4:
 				Position_r5c4 ();
 				break;
-			case Positions.r5c5:
+			case Positions.p1r5c5:
 				Position_r5c5 ();
 				break;
 			}
@@ -158,13 +165,13 @@ public class SneakMission : MonoBehaviour {
 	void GameOver() {
 		switch (currentPosition) {
 
-		case Positions.r1c4:
+		case Positions.p1r1c4:
 			descriptionText.text = "You sneak up to the guard by the door and dispatch him easily, however as you grab the keycard from the downed guard, the patrolling guard spots you from the far stairs. You are immediately gunned down.";
 			break;
-		case Positions.r1c2:
+		case Positions.p1r1c2:
 			descriptionText.text = "You do your best to pull the vent cover off quietly but your best is not good enough. The guard on the platform is quickly alerted to your precense and you are hunted down.";
 			break;
-		case Positions.r2c1:
+		case Positions.p1r2c1:
 			if (gameOverChoice == "a") {
 				descriptionText.text = "You easily dispatch the guard by the door. While searching for the keycard on his body however, the patrolling guard comes up the stairs and spots you. You are quickly gunned down.";
 			} else if (gameOverChoice == "b") {
@@ -173,13 +180,13 @@ public class SneakMission : MonoBehaviour {
 				descriptionText.text = "You sneak up to the guard by the door and dispatch him easily, however as you grab the keycard from the downed guard, the patrolling guard comes up the stairs behind you. You are immediately gunned down.";
 			}
 			break;
-		case Positions.r5c2:
+		case Positions.p1r5c2:
 			descriptionText.text = "Suprising and taking out two armed guards while unarmed would be pretty impressive, but alas, you are not that good.";
 			break;
-		case Positions.r4c4:
+		case Positions.p1r4c4:
 			descriptionText.text = "You peer into the truck and see a sleeping mechanic. You hear someone behind you. \n\n\"Hey! Who are you!?\" \n\nThe mechanics boss comes up behind you with 2 guards. You are taken prisoner.";
 			break;
-		case Positions.r4c4b:
+		case Positions.p1r4c4b:
 			if (gameOverChoice == "s") {
 				descriptionText.text = "You turn around and shoot a supervisor for the maintenence bay. The mechanic that was in the back of the truck, who he was actually yelling at, hits the alarm. You are quickly hunted down by the guards and killed.";
 			} else if (gameOverChoice == "a") {
@@ -204,7 +211,7 @@ public class SneakMission : MonoBehaviour {
 			choicesText.text = "Press SPACE to enter the facility. (Just goes to Game Over Screen for this build)";
 			break;
 		case "Vent":
-			descriptionText.text = "Using the crowbar, you are able to quietly remove the vent cover.";
+			descriptionText.text = "Using the screwdriver, you are able to quietly remove the vent cover.";
 			choicesText.text = "Press SPACE to enter the vent. (Just goes to Game Over Screen for this build)";
 			break;
 		}
@@ -218,30 +225,30 @@ public class SneakMission : MonoBehaviour {
 		descriptionText.text = "Hiding under the stairs, you can see behind the crates. You can see the vent you saw from the tree earlier.";
 		choicesText.text = "Press S to SNEAK over to the vent. \nPress B to go Back into the opening under the walkway.";
 		if (Input.GetKeyDown("s")) {
-			currentPosition = Positions.r1c2;
+			currentPosition = Positions.p1r1c2;
 		} else if (Input.GetKeyDown("b")) {
-			currentPosition = Positions.r2c1b;
+			currentPosition = Positions.p1r2c1b;
 		}
 	}
 
 	void Position_r1c2() {
 
-		if (gotCrowbar) {
-			descriptionText.text = "The vent cover looks like it would be possible to remove without the use of a tool.";
-			choicesText.text = "Press P to PULL the vent cover off. \nPress B to go BACK to the stairs.";
-			if (Input.GetKeyDown("p")) {
+		if (gotScrewdriver) {
+			descriptionText.text = "You should be able to quietly remove the vent cover with the screwdriver.";
+			choicesText.text = "Press R to REMOVE the vent cover. \nPress B to go BACK to the stairs.";
+			if (Input.GetKeyDown("r")) {
 				level1Complete = true;
 				entranceUsed = "Vent";
 			} else if (Input.GetKeyDown("b")) {
-				currentPosition = Positions.r1c1;
+				currentPosition = Positions.p1r1c1;
 			}
 		} else {
-			descriptionText.text = "The vent cover looks like it would be possible to remove without the use of a tool.";
+			descriptionText.text = "The vent cover looks like it would be possible to remove with some force.";
 			choicesText.text = "Press P to PULL the vent cover off. \nPress B to go BACK to the stairs.";
 			if (Input.GetKeyDown("p")) {
 				gameOver = true;
 			} else if (Input.GetKeyDown("b")) {
-				currentPosition = Positions.r1c1;
+				currentPosition = Positions.p1r1c1;
 			}
 		}
 	}
@@ -262,14 +269,14 @@ public class SneakMission : MonoBehaviour {
 					entranceUsed = "Door";
 				}
 			}else if (Input.GetKeyDown("b")) {
-				currentPosition = Positions.r3c4;
+				currentPosition = Positions.p1r3c4;
 			}
 		} else {
 			choicesText.text = "Press A to sneak up and ATTACK the guard. \nPress B to go BACK to tree.";
 			if (Input.GetKeyDown("a")) {
 				gameOver = true;
 			}else if (Input.GetKeyDown("b")) {
-				currentPosition = Positions.r3c4;
+				currentPosition = Positions.p1r3c4;
 			}
 		}
 	}
@@ -306,18 +313,16 @@ public class SneakMission : MonoBehaviour {
 	}
 
 	void Position_r2c1a() {
-		descriptionText.text = "Hidden in the entrace to the space under the platform, you have a few options for where to go next. You can crawl through the space to the other side, you can go West, which will take you to the western " + 
-							   "staircase or you can go East, which will take you between the North side of the Helipad and the guard on the platform.";
-		choicesText.text = "Press C to CRAWL through to the other side of the space under the platform. \nPress W to go WEST. \nPress E to go EAST. \nPress B to go Back to the crates you came from.";
+		descriptionText.text = "Hidden in the entrace to the space under the platform, you contemplate your options. You can crawl through the space to the other side, you can go West, which will take you to the western " + 
+							   "staircase or you can go East.";
+		choicesText.text = "Press C to CRAWL through to the other side of the space under the platform. \nPress W to go WEST. \nPress B to go Back to the crates you came from.";
 
 		if (Input.GetKeyDown("c")) {
-			currentPosition = Positions.r2c1b;
+			currentPosition = Positions.p1r2c1b;
 		} else if (Input.GetKeyDown("w")) {
-			currentPosition = Positions.r2c1;
-		} else if (Input.GetKeyDown("e")) {
-			currentPosition = Positions.r2c2;
+			currentPosition = Positions.p1r2c1;
 		} else if (Input.GetKeyDown("b")) {
-			currentPosition = Positions.r3c1;
+			currentPosition = Positions.p1r3c1;
 		}
 	}
 
@@ -326,9 +331,9 @@ public class SneakMission : MonoBehaviour {
 		choicesText.text = "Press S to SNEAK under the stairs. \nPress B to go BACK to the other side of the opening.";
 
 		if (Input.GetKeyDown("s")) {
-			currentPosition = Positions.r1c1;
+			currentPosition = Positions.p1r1c1;
 		} else if (Input.GetKeyDown("b")) {
-			currentPosition = Positions.r2c1a;
+			currentPosition = Positions.p1r2c1a;
 		}
 	}
 
@@ -360,7 +365,7 @@ public class SneakMission : MonoBehaviour {
 		}
 			
 		if (Input.GetKeyDown("b")) {
-			currentPosition = Positions.r3c5;
+			currentPosition = Positions.p1r3c5;
 			leftOnce = true;
 		}
 	}
@@ -370,9 +375,9 @@ public class SneakMission : MonoBehaviour {
 		choicesText.text = "Press D to DIVE to the opening under the platorm.  \nPress B to go BACK to the south side of the Helipad.";
 
 		if (Input.GetKeyDown("d")) {
-			currentPosition = Positions.r2c1a;
+			currentPosition = Positions.p1r2c1a;
 		} else if (Input.GetKeyDown("b")) {
-			currentPosition = Positions.r3c1;
+			currentPosition = Positions.p1r3c1;
 		}
 	}
 
@@ -392,10 +397,10 @@ public class SneakMission : MonoBehaviour {
 			
 		choicesText.text = "Press S to SNEAK to the southern side of the helipad. \nPress B to go BACK to the tree.";
 		if (Input.GetKeyDown("b")) {
-			currentPosition = Positions.r3c4;
+			currentPosition = Positions.p1r3c4;
 			helicopterTakeOff = true;
 		} else if (Input.GetKeyDown("s")) {
-			currentPosition = Positions.r4c2;
+			currentPosition = Positions.p1r4c2;
 			helicopterTakeOff = true;
 		}
 	}
@@ -412,16 +417,16 @@ public class SneakMission : MonoBehaviour {
 			choicesText.text = "Press W to go WEST towards the helipad. \nPress N to go North towards the stairs. \nPress S to go SOUTH towards the vehicle maintenance area.\nPress B to go BACK over the wall";
 			if (Input.GetKeyDown("w")) {
 				isWaiting = false;
-				currentPosition = Positions.r3c3;
+				currentPosition = Positions.p1r3c3;
 			} else if (Input.GetKeyDown("n")) {
 				isWaiting = false;
-				currentPosition = Positions.r1c4;
+				currentPosition = Positions.p1r1c4;
 			} else if (Input.GetKeyDown("b")) {
 				isWaiting = false;
-				currentPosition = Positions.r3c5;
+				currentPosition = Positions.p1r3c5;
 			} else if (Input.GetKeyDown("s")) {
 				isWaiting = false;
-				currentPosition = Positions.r4c4;
+				currentPosition = Positions.p1r4c4;
 			}
 				
 		} else {
@@ -432,17 +437,17 @@ public class SneakMission : MonoBehaviour {
 			choicesText.text = "Press O to OBSERVE the guards. \nPress W to go WEST towards the helipad. \nPress N to go NORTH towards the stairs. \nPress S to go SOUTH towards the vehicle maintenance area. \nPress B to go BACK over the wall";
 
 			if (Input.GetKeyDown("w")) {
-				currentPosition = Positions.r3c3;
+				currentPosition = Positions.p1r3c3;
 			} else if (Input.GetKeyDown("o")) {
 				if (!isWaiting) {
 					isWaiting = true;
 				}
 			} else if (Input.GetKeyDown("n")) {
-				currentPosition = Positions.r1c4;
+				currentPosition = Positions.p1r1c4;
 			} else if (Input.GetKeyDown("b")) {
-				currentPosition = Positions.r3c5;
+				currentPosition = Positions.p1r3c5;
 			} else if (Input.GetKeyDown("s")) {
-				currentPosition = Positions.r4c4;
+				currentPosition = Positions.p1r4c4;
 			}
 		}
 			
@@ -453,11 +458,11 @@ public class SneakMission : MonoBehaviour {
 		choicesText.text = "Press C to CLIMB the tree. \nPress E to EXPLORE further north. \nPress B to go back towards the corner of the wall.";
 
 		if (Input.GetKeyDown("c")) {
-			currentPosition = Positions.r3c4;
+			currentPosition = Positions.p1r3c4;
 		} else if (Input.GetKeyDown("e")) {
-			currentPosition = Positions.r2c5;
+			currentPosition = Positions.p1r2c5;
 		} else if (Input.GetKeyDown("b")) {
-			currentPosition = Positions.r4c5;
+			currentPosition = Positions.p1r4c5;
 		}
 	}
 
@@ -471,9 +476,9 @@ public class SneakMission : MonoBehaviour {
 		choicesText.text = "Press S to SNEAK to the boxes across the walkway. \nPress B to go Back to the east side of the Helipad.";
 
 		if (Input.GetKeyDown("s")) {
-			currentPosition = Positions.r3c1;
+			currentPosition = Positions.p1r3c1;
 		} else if (Input.GetKeyDown("b")) {
-			currentPosition = Positions.r3c3;
+			currentPosition = Positions.p1r3c3;
 		}
 	}
 
@@ -484,19 +489,19 @@ public class SneakMission : MonoBehaviour {
 
 	void Position_r4c4() {
 
-		if (gotCrowbar) {
+		if (gotScrewdriver) {
 
 			if (leftBay) {
 				descriptionText.text = "You sneak back towards the maintenance bay. There is too much activity by the maintenance bay, too dangerous to go back inside.";
 				choicesText.text = "Press B to go BACK to the tree.";
 				if (Input.GetKeyDown("b")) {
-					currentPosition = Positions.r3c4;
+					currentPosition = Positions.p1r3c4;
 				}
 			} else {
 				descriptionText.text = "You sneak by the mechanic without issue, once you see the coast is clear you can head back to the tree.";
 				choicesText.text = "Press B to go BACK to the tree.";
 				if (Input.GetKeyDown("b")) {
-					currentPosition = Positions.r3c4;
+					currentPosition = Positions.p1r3c4;
 					leftBay = true;
 				}
 			}
@@ -507,9 +512,9 @@ public class SneakMission : MonoBehaviour {
 			if (Input.GetKeyDown("i")) {
 				gameOver = true;
 			} else if (Input.GetKeyDown("s")) {
-				currentPosition = Positions.r4c4a;
+				currentPosition = Positions.p1r4c4a;
 			} else if (Input.GetKeyDown("b")) {
-				currentPosition = Positions.r3c4;
+				currentPosition = Positions.p1r3c4;
 			}
 		}
 	}
@@ -518,20 +523,21 @@ public class SneakMission : MonoBehaviour {
 		descriptionText.text = "You sneak by the truck towards the back of the shop. You see a toolbox open by the hood of the truck. You may be able to find something useful for opening the vent under the main enterance.";
 		choicesText.text = "Press T to check out the TOOLBOX. \nPress B to go Back.";
 		if (Input.GetKeyDown("t")) {
-			currentPosition = Positions.r4c4b;
+			currentPosition = Positions.p1r4c4b;
 		} else if (Input.GetKeyDown("b")) {
-			currentPosition = Positions.r4c4;
+			currentPosition = Positions.p1r4c4;
 		}
 	}
 
 	void Position_r4c4b() {
-		descriptionText.text = "You find a small crowbar in the toolbox, should be useful for opening the vent. \"HEY! WHAT ARE YOU DOING!?\"";
+		descriptionText.text = "You find a screwdriver in the toolbox, should be useful for opening the vent. \"HEY! WHAT ARE YOU DOING!?\"";
 
 		if (weaponEquipped == "Silenced Pistol") {
 			choicesText.text = "Press H to HIDE behind the truck. \nPress S to turn around and SHOOT. ";
 			if (Input.GetKeyDown("h")) {
-				currentPosition = Positions.r4c4c;
-				gotCrowbar = true;
+				currentPosition = Positions.p1r4c4c;
+				gotScrewdriver = true;
+				equipmentImage.color = Color.white;
 			} else if (Input.GetKeyDown("s")) {
 				gameOver = true;
 				gameOverChoice = "s";
@@ -540,8 +546,9 @@ public class SneakMission : MonoBehaviour {
 		} else {
 			choicesText.text = "Press H to HIDE behind the truck. \nPress A to turn around and ATTACK. ";
 			if (Input.GetKeyDown("h")) {
-				currentPosition = Positions.r4c4c;
-				gotCrowbar = true;
+				currentPosition = Positions.p1r4c4c;
+				gotScrewdriver = true;
+				equipmentImage.color = Color.white;
 			} else if (Input.GetKeyDown("a")) {
 				gameOver = true;
 				gameOverChoice = "a";
@@ -553,7 +560,7 @@ public class SneakMission : MonoBehaviour {
 		descriptionText.text = "From behind the truck you can observe a mechanic sleepily get out of the back of the truck. The boss then rips into him more before storming off. The mechanic gripes to himself as he heads towards the front of the truck.";
 		choicesText.text = "Press S to go SNEAK around the truck.";
 		if (Input.GetKeyDown("s")) {
-			currentPosition = Positions.r4c4;
+			currentPosition = Positions.p1r4c4;
 		}
 	}
 
@@ -562,9 +569,9 @@ public class SneakMission : MonoBehaviour {
 		choicesText.text = "Press T to go toward the TREE. \nPress B to go BACK around the corner.";
 
 		if (Input.GetKeyDown("t")) {
-			currentPosition = Positions.r3c5;
+			currentPosition = Positions.p1r3c5;
 		} else if (Input.GetKeyDown("b")) {
-			currentPosition = Positions.r5c4;
+			currentPosition = Positions.p1r5c4;
 		}
 	}
 
@@ -578,7 +585,7 @@ public class SneakMission : MonoBehaviour {
 		if (Input.GetKeyDown("a")) {
 			gameOver = true;
 		} else if (Input.GetKeyDown("r")) {
-			currentPosition = Positions.r5c4;
+			currentPosition = Positions.p1r5c4;
 		}
 	}
 
@@ -591,9 +598,9 @@ public class SneakMission : MonoBehaviour {
 		choicesText.text = "Press L to go LEFT. \nPress R to go RIGHT.";
 
 		if (Input.GetKeyDown("l")) {
-			currentPosition = Positions.r5c2;
+			currentPosition = Positions.p1r5c2;
 		} else if (Input.GetKeyDown("r")) {
-			currentPosition = Positions.r4c5;
+			currentPosition = Positions.p1r4c5;
 		}
 	}
 
